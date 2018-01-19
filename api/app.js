@@ -24,7 +24,7 @@ db.connect(url, function(err) {
     process.exit(1);
   }
 });
-
+console.log(ur);
 //disabled by AP - don't need views at it's API
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
