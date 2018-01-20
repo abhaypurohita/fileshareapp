@@ -7,3 +7,5 @@ https://www.npmjs.com/package/mongodb
 https://github.com/aybmab/express-redux-sample/blob/master/client/reducers/TodoReducer.js
 
 https://www.michaelcrump.net/using-github-with-visualstudio-code/
+
+https://www.youtube.com/watch?v=BfWh747SBfY&index=1&list=PLFaW_8zE4amOp3pOVCrGO-Ox--q4WShsQ

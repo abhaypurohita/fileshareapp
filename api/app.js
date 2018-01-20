@@ -7,13 +7,21 @@ var bodyParser = require('body-parser');
 
 //custom config
 var config = require('./config');
-//db
+//db - mongo
 var db = require('./database');
 
 var index = require('./routes/index');
+//include upload router
+var upload = require('./routes/upload');
+//include download router
+var download = require('./routes/download');
 var users = require('./routes/users');
 
 var app = express();
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
 //connect to db
 const url = config.mongodb.protocol+config.mongodb.host+config.mongodb.port+config.mongodb.collection;
@@ -24,11 +32,6 @@ db.connect(url, function(err) {
     process.exit(1);
   }
 });
-console.log(url);
-//disabled by AP - don't need views at it's API
-// view engine setup
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -39,6 +42,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/api', index);
+//route to upload
+app.use('/api/upload', upload);
+//route to download
+app.use('/api/download', download);
+app.use('/api/download/:name', download);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
