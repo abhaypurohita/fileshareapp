@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+
 //get config
 var config = require('../config');
 //set mutler
@@ -20,9 +21,29 @@ var fileupload = multer({
     storage: storage
 });
 
+//get model class
+const UploadModel = require('../models/uploadmodel');
+
 //route for upload file
-router.post('/', fileupload.array('files'), function(req, res, next) {    
-    //console.log('Received file upload request', req.files);
+router.post('/', fileupload.array('files'), function(req, res, next) {            
+    modelupload = new UploadModel();
+
+    //save to db
+    modelupload.save(req.files, (err) => {
+        //@todo - remove uploaded files if db error
+       if(err) {
+           res.status(503).json({
+               error: {
+                   message: 'Error uploading files'
+               }
+           });
+       } else {
+           res.status(200).json({
+               message: 'Files uploaded successfully'
+           });
+       }
+    });
+
     const files = req.files;
     return res.json({
         files: files

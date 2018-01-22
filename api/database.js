@@ -1,5 +1,8 @@
 var mongoClient = require('mongodb').MongoClient;
 
+//custom config
+var config = require('./config');
+
 var state = {
     db: null,
 }
@@ -14,7 +17,8 @@ exports.connect = function(url, done) {
         if(err) {
             return done(err);
         }
-        state.db = db;
+        const mydb = db.db(config.mongodb.collection);
+        state.db = mydb;
         done();
     });
 }

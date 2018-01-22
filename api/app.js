@@ -24,14 +24,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 //connect to db
-const url = config.mongodb.protocol+config.mongodb.host+config.mongodb.port+config.mongodb.collection;
-db.connect(url, function(err) {
+
+db.connect(config.mongodb.url, function(err) {
   if(err) {
     //@todo - present custom view for error
     console.log('Unable to connect to mongodb');
     process.exit(1);
   }
 });
+
+//app.set('db', db);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

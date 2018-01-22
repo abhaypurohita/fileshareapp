@@ -9,7 +9,8 @@ config.uploadsettings = {};
 config.mongodb.protocol = 'mongodb://';
 config.mongodb.host = 'localhost';
 config.mongodb.port = ':27017';
-config.mongodb.collection = '/fileshareapp';
+config.mongodb.collection = 'fileshareapp';
+config.mongodb.url = config.mongodb.protocol+config.mongodb.host+config.mongodb.port+'/'+config.mongodb.collection;
 
 //file upload settings
 config.uploadsettings.destination = path.join(__dirname, '.', 'uploadedfiles');
