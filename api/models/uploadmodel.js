@@ -33,7 +33,7 @@ class uploadModel {
         if(models.length){
             const mdb = db.get();
             console.log(models);
-            mdb.collection('fileshareapp').insertMany(models, (err, results) => {
+            mdb.collection('files').insertMany(models, (err, results) => {
                 if(err) {                    
                     cb(err);
                 }
