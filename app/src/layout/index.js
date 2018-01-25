@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import Header from '../components/header';
 
 class Layout extends Component {
     constructor(props) {
@@ -8,7 +9,12 @@ class Layout extends Component {
     render() {
         return (
             <div className={'app-layout'}>
-                Hello World
+                <div className={'app-container'}>
+                    <Header/>
+                    <div className={'app-content'}>
+                        app content here...
+                    </div>
+                </div>
             </div>
         );
         
